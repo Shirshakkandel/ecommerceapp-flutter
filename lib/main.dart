@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'home.dart';
 void main()
 {
   runApp
   (
-    new MaterialApp(
-        home:GridView.count(crossAxisCount: 2,
-        children: <Widget>[
-          Text("one"),
-          Text("two"),
-        ],
-      ),
-      )
+    MaterialApp(
+      home:HomePage()
+    )
   );
 }
+
