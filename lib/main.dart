@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
-
 import 'package:carousel_pro/carousel_pro.dart';
-//my own import
+//my own imports
 import 'components/horizontal_listview.dart';
 import 'components/product.dart';
 
 void main() {
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: HomePage()));
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: HomePage(),
+  ));
 }
 
 class HomePage extends StatefulWidget {
   @override
-  _State createState() => _State();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _State extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    Widget image_carousel = new Container(
+    Widget image_carousel = Container(
       height: 200.0,
-      child: new Carousel(
+      child: Carousel(
         boxFit: BoxFit.cover,
         images: [
           AssetImage('images/c1.jpg'),
@@ -30,124 +32,127 @@ class _State extends State<HomePage> {
         ],
         autoplay: false,
         animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds: 1000),
-        dotSize: 4.0,
+        animationDuration: Duration(microseconds: 1000),
+        dotSize: 4,
         indicatorBgPadding: 2.0,
       ),
     );
-
     return Scaffold(
-      appBar: new AppBar(
-        elevation: 0.1,
-        backgroundColor: Colors.red,
-        title: Text('Sabfeed'),
-        actions: <Widget>[
-          new IconButton(
-              icon: Icon(Icons.search, color: Colors.white), onPressed: () {}),
-          new IconButton(
-              icon: Icon(Icons.shopping_cart, color: Colors.white),
-              onPressed: () {})
-        ],
-      ),
-      drawer: new Drawer(
-        child: new ListView(
-          children: <Widget>[
-            //header
-            new UserAccountsDrawerHeader(
-              accountName: Text('Shirshak kandel'),
-              accountEmail: Text('shirshakkandel@gmail.com'),
+      appBar: AppBar(
+          elevation: 0.1,
+          backgroundColor: Colors.red,
+          title: Text('Sablook'),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.search),
+                color: Colors.white,
+                onPressed: () {}),
+            IconButton(
+                icon: Icon(Icons.shopping_basket),
+                color: Colors.white,
+                onPressed: () {}),
+          ]),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text("Shirshak kandel"),
+              accountEmail: Text("shirshakkandel@gmail.com"),
               currentAccountPicture: GestureDetector(
-                child: new CircleAvatar(
+                child: CircleAvatar(
                   backgroundColor: Colors.grey,
-                  child: Icon(Icons.person, color: Colors.white),
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-              decoration: new BoxDecoration(color: Colors.red),
+              decoration: BoxDecoration(
+                color: Colors.red,
+              ),
             ),
-
-            //body
-
             InkWell(
               onTap: () {},
               child: ListTile(
                 title: Text('Home Page'),
-                leading: Icon(Icons.home),
+                leading: Icon(
+                  Icons.home,
+                  color: Colors.red,
+                ),
               ),
             ),
-
             InkWell(
               onTap: () {},
               child: ListTile(
                 title: Text('My account'),
-                leading: Icon(Icons.person),
+                leading: Icon(
+                  Icons.person,
+                  color: Colors.red,
+                ),
               ),
             ),
-
             InkWell(
               onTap: () {},
               child: ListTile(
                 title: Text('My orders'),
-                leading: Icon(Icons.shopping_basket),
+                leading: Icon(
+                  Icons.shopping_basket,
+                  color: Colors.red,
+                ),
               ),
             ),
-
-            InkWell(
-              onTap: () {},
-              child: ListTile(
-                title: Text('Categories'),
-                leading: Icon(Icons.dashboard),
-              ),
-            ),
-
             InkWell(
               onTap: () {},
               child: ListTile(
                 title: Text('Favourite'),
-                leading: Icon(Icons.favorite),
+                leading: Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                ),
               ),
             ),
             Divider(),
-
             InkWell(
               onTap: () {},
               child: ListTile(
                 title: Text('Setting'),
-                leading: Icon(Icons.settings, color: Colors.blue),
+                leading: Icon(Icons.settings),
               ),
             ),
-
             InkWell(
               onTap: () {},
               child: ListTile(
                 title: Text('About'),
-                leading: Icon(Icons.help, color: Colors.green),
+                leading: Icon(Icons.help),
               ),
             ),
           ],
         ),
       ),
-      body: new ListView(
-        children: <Widget>[
-          //image carousel begin
+      body: ListView(
+        children: [
+          //image carousel begin here
           image_carousel,
-          //padding widget
-          new Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Text('Categories'),
+          Padding(
+            //Padding Widget
+            padding: EdgeInsets.all(8.0),
+            child: Text('Categories'),
           ),
+          //Horizontal list view begins here
           HorizontalList(),
 
           //padding widget
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text('Product'),
-          ),
+          Padding(padding: EdgeInsets.all(20), child: Text('Recent products')),
+
+          //grid view
           Container(
-            height: 320.0,
-            child: Product(),
-          ),
+            height: 320,
+            child: Products(),
+          )
         ],
       ),
     );
   }
 }
+
+
